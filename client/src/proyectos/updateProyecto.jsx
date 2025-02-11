@@ -119,7 +119,7 @@ const UpdateProyecto = () => {
     if (proyecto.fecha_fin === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
     } else {
-      const endDate = new Date(proyectoD.fecha_fin);
+      const endDate = new Date(proyecto.fecha_fin);
       const today = new Date();
       const maxDate = new Date();
       maxDate.setFullYear(today.getFullYear() + 10);
@@ -223,7 +223,7 @@ const UpdateProyecto = () => {
                 className={`form-control ${errors.fecha_fin ? "is-invalid" : ""}`}
                 onChange={inputHandler}
                 name="fecha_fin"
-                value={proyectoData.fecha_fin}
+                value={proyecto.fecha_fin}
               />
               {errors.fecha_fin && (
                 <div className="invalid-feedback" style={{ color: "red" }}>
