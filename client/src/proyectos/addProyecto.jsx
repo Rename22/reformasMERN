@@ -67,13 +67,26 @@ const AddProyecto = () => {
     }
 
     // Validar "fecha_fin"
+    // Validar "fecha_fin"
     if (fieldName === "fecha_fin" && value === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
-    } else if (inputDate > maxDate) {
-        newErrors.fecha_fin = "La fecha de fin no puede ser mayor a 10 años a partir de hoy";
     } else {
-      delete newErrors.fecha_fin;
+      // Validar si la fecha de finalización es anterior a la fecha de inicio o mayor a 10 años
+      const today = new Date();
+      const startDate = new Date(proyectoData.fecha_inicio); // Usamos la fecha de inicio
+      const endDate = new Date(value);
+      const maxDate = new Date();
+      maxDate.setFullYear(today.getFullYear() + 10);
+
+      if (endDate < startDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser anterior a la fecha de inicio";
+      } else if (endDate > maxDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser mayor a 10 años a partir de hoy";
+      } else {
+        delete newErrors.fecha_fin;
+      }
     }
+
 
     // Validar "estado"
     if (fieldName === "estado" && value === "") {
@@ -93,6 +106,7 @@ const AddProyecto = () => {
   };
 
   // Validación del formulario completo al hacer clic en "Enviar"
+  // Validación del formulario completo al hacer clic en "Enviar"
   const validateForm = () => {
     const newErrors = {};
 
@@ -106,6 +120,17 @@ const AddProyecto = () => {
 
     if (proyectoData.fecha_fin === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
+    } else {
+      const startDate = new Date(proyectoData.fecha_inicio);
+      const endDate = new Date(proyectoData.fecha_fin);
+      const maxDate = new Date();
+      maxDate.setFullYear(new Date().getFullYear() + 10);
+
+      if (endDate < startDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser anterior a la fecha de inicio";
+      } else if (endDate > maxDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser mayor a 10 años a partir de hoy";
+      }
     }
 
     if (proyectoData.estado === "") {
@@ -120,6 +145,7 @@ const AddProyecto = () => {
 
     return Object.keys(newErrors).length === 0; // Si no hay errores, retornamos true
   };
+
 
   // Función para enviar el formulario
   const submitForm = async (e) => {
@@ -208,6 +234,7 @@ const AddProyecto = () => {
                 </div>
               )}
             </div>
+
 
             <div className="form-group mb-3">
               <label htmlFor="estado">Estado:</label>
