@@ -19,7 +19,7 @@ const AddMaterial = () => {
   useEffect(() => {
     const fetchProyectos = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/proyectos");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/proyectos");
         setProyectos(response.data);
       } catch (error) {
         console.log("Error al obtener los proyectos", error);
@@ -101,7 +101,7 @@ const AddMaterial = () => {
 
     // Enviar los datos si no hay errores
     await axios
-      .post("http://localhost:8000/api/material", materialData)
+      .post("https://reformasmern-backend.onrender.com/api/material", materialData)
       .then((response) => {
         toast.success(response.data.message, { position: "top-right" });
         navigate("/materiales"); // Redirige a la lista de materiales después de agregar el nuevo material
