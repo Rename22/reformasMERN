@@ -20,7 +20,7 @@ const UpdateVivienda = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/clients");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/clients");
         setClients(response.data);
       } catch (error) {
         console.log("Error al obtener los clientes", error);
@@ -95,7 +95,7 @@ const UpdateVivienda = () => {
 
     // Enviar los datos si no hay errores
     await axios
-      .put(`http://localhost:8000/api/update/vivienda/${id}`, vivienda)
+      .put(`https://reformasmern-backend.onrender.com/api/update/vivienda/${id}`, vivienda)
       .then((response) => {
         toast.success(response.data.message, { position: "top-right" });
         navigate("/viviendas"); // Redirige a la lista de viviendas después de actualizar
@@ -108,7 +108,7 @@ const UpdateVivienda = () => {
   // Cargar los datos de la vivienda cuando se monta el componente
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/vivienda/${id}`)
+      .get(`https://reformasmern-backend.onrender.com/api/vivienda/${id}`)
       .then((response) => {
         setVivienda(response.data); // Establecer los datos de la vivienda
       })
