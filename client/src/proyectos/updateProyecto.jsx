@@ -108,15 +108,15 @@ const UpdateProyecto = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (proyectoData.descripcion === "") {
+    if (proyecto.descripcion === "") {
       newErrors.descripcion = "La descripción es obligatoria";
     }
 
-    if (proyectoData.fecha_inicio === "") {
+    if (proyecto.fecha_inicio === "") {
       newErrors.fecha_inicio = "La fecha de inicio es obligatoria";
     }
 
-    if (proyectoData.fecha_fin === "") {
+    if (proyecto.fecha_fin === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
     } else {
       const endDate = new Date(proyectoData.fecha_fin);
@@ -130,11 +130,11 @@ const UpdateProyecto = () => {
       }
     }
 
-    if (proyectoData.estado === "") {
+    if (proyecto.estado === "") {
       newErrors.estado = "El estado es obligatorio";
     }
 
-    if (proyectoData.id_vivienda === "") {
+    if (proyecto.id_vivienda === "") {
       newErrors.id_vivienda = "La vivienda es obligatoria";
     }
 
