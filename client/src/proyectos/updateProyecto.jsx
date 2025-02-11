@@ -119,7 +119,7 @@ const UpdateProyecto = () => {
     if (proyecto.fecha_fin === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
     } else {
-      const endDate = new Date(proyectoData.fecha_fin);
+      const endDate = new Date(proyectoD.fecha_fin);
       const today = new Date();
       const maxDate = new Date();
       maxDate.setFullYear(today.getFullYear() + 10);
