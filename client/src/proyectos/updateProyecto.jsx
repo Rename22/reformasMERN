@@ -87,7 +87,6 @@ const UpdateProyecto = () => {
       }
     }
 
-
     if (fieldName === "id_vivienda" && value === "") {
       newErrors.id_vivienda = "La vivienda es obligatoria";
     } else {
@@ -104,7 +103,6 @@ const UpdateProyecto = () => {
   };
 
   // Validación completa del formulario
-  // Validación del formulario completo al hacer clic en "Enviar"
   const validateForm = () => {
     const newErrors = {};
 
@@ -142,7 +140,6 @@ const UpdateProyecto = () => {
 
     return Object.keys(newErrors).length === 0; // Si no hay errores, retornamos true
   };
-
 
   // Función para enviar el formulario
   const submitForm = async (e) => {
@@ -231,7 +228,6 @@ const UpdateProyecto = () => {
                 </div>
               )}
             </div>
-
 
             <div className="form-group mb-3">
               <label htmlFor="estado">Estado:</label>
