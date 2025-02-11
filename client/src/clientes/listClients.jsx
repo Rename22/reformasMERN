@@ -21,7 +21,7 @@ const ListClients = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/clients");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/clients");
         setClients(response.data);
       } catch (error) {
         console.log("Error al obtener los datos", error);
@@ -68,7 +68,7 @@ const ListClients = () => {
     if (!isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:8000/api/delete/client/${clientId}`);
+      await axios.delete(`https://reformasmern-backend.onrender.com/api/delete/client/${clientId}`);
       setClients(prev => prev.filter(client => client._id !== clientId));
       toast.success("Cliente eliminado exitosamente", { position: "top-right" });
     } catch (error) {
