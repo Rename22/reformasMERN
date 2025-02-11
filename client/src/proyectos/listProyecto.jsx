@@ -21,7 +21,7 @@ const ListProyectos = () => {
   useEffect(() => {
     const fetchProyectos = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/proyectos");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/proyectos");
         setProyectos(response.data);
       } catch (error) {
         console.log("Error al obtener los datos", error);
@@ -67,7 +67,7 @@ const ListProyectos = () => {
     if (!isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:8000/api/delete/proyecto/${proyectoId}`);
+      await axios.delete(`https://reformasmern-backend.onrender.com/api/delete/proyecto/${proyectoId}`);
       setProyectos(prev => prev.filter(proyecto => proyecto._id !== proyectoId));
       toast.success("Proyecto eliminado exitosamente", { position: "top-right" });
     } catch (error) {
