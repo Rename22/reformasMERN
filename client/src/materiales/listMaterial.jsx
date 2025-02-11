@@ -21,7 +21,7 @@ const ListMaterial = () => {
   useEffect(() => {
     const fetchMateriales = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/materials");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/materials");
         setMateriales(response.data);
       } catch (error) {
         console.log("Error al obtener los datos", error);
@@ -67,7 +67,7 @@ const ListMaterial = () => {
     if (!isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:8000/api/delete/material/${materialId}`);
+      await axios.delete(`https://reformasmern-backend.onrender.com/api/delete/material/${materialId}`);
       setMateriales(prev => prev.filter(material => material._id !== materialId));
       toast.success("Material eliminado exitosamente", { position: "top-right" });
     } catch (error) {
