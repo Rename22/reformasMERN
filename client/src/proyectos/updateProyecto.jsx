@@ -22,7 +22,7 @@ const UpdateProyecto = () => {
   useEffect(() => {
     const fetchViviendas = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/viviendas");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/viviendas");
         setViviendas(response.data);
       } catch (error) {
         console.log("Error al obtener las viviendas", error);
@@ -34,7 +34,7 @@ const UpdateProyecto = () => {
   // Obtener los datos del proyecto cuando se monta el componente
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/proyecto/${id}`)
+      .get(`https://reformasmern-backend.onrender.com/api/proyecto/${id}`)
       .then((response) => {
         const proyectoData = response.data;
         // Asegurarnos de que las fechas estén en el formato correcto para el input
@@ -133,7 +133,7 @@ const UpdateProyecto = () => {
 
     // Enviar los datos si no hay errores
     await axios
-      .put(`http://localhost:8000/api/update/proyecto/${id}`, proyecto)
+      .put(`https://reformasmern-backend.onrender.com/api/update/proyecto/${id}`, proyecto)
       .then((response) => {
         toast.success(response.data.message, { position: "top-right" });
         navigate("/proyectos"); // Redirige a la lista de proyectos después de actualizar
