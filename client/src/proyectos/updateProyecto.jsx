@@ -70,11 +70,23 @@ const UpdateProyecto = () => {
       delete newErrors.fecha_inicio;
     }
 
+    // Validar "fecha_fin"
     if (fieldName === "fecha_fin" && value === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
     } else {
-      delete newErrors.fecha_fin;
+      // Validar si la fecha de finalización es mayor a 10 años a partir de hoy
+      const today = new Date();
+      const endDate = new Date(value);
+      const maxDate = new Date();
+      maxDate.setFullYear(today.getFullYear() + 10);
+
+      if (endDate > maxDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser mayor a 10 años a partir de hoy";
+      } else {
+        delete newErrors.fecha_fin;
+      }
     }
+
 
     if (fieldName === "id_vivienda" && value === "") {
       newErrors.id_vivienda = "La vivienda es obligatoria";
@@ -92,33 +104,45 @@ const UpdateProyecto = () => {
   };
 
   // Validación completa del formulario
+  // Validación del formulario completo al hacer clic en "Enviar"
   const validateForm = () => {
     const newErrors = {};
 
-    if (proyecto.descripcion === "") {
+    if (proyectoData.descripcion === "") {
       newErrors.descripcion = "La descripción es obligatoria";
     }
 
-    if (proyecto.fecha_inicio === "") {
+    if (proyectoData.fecha_inicio === "") {
       newErrors.fecha_inicio = "La fecha de inicio es obligatoria";
     }
 
-    if (proyecto.fecha_fin === "") {
+    if (proyectoData.fecha_fin === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
+    } else {
+      const endDate = new Date(proyectoData.fecha_fin);
+      const today = new Date();
+      const maxDate = new Date();
+      maxDate.setFullYear(today.getFullYear() + 10);
+
+      // Validar si la fecha de finalización es mayor a 10 años a partir de hoy
+      if (endDate > maxDate) {
+        newErrors.fecha_fin = "La fecha de finalización no puede ser mayor a 10 años a partir de hoy";
+      }
     }
 
-    if (proyecto.id_vivienda === "") {
-      newErrors.id_vivienda = "La vivienda es obligatoria";
-    }
-
-    if (proyecto.estado === "") {
+    if (proyectoData.estado === "") {
       newErrors.estado = "El estado es obligatorio";
+    }
+
+    if (proyectoData.id_vivienda === "") {
+      newErrors.id_vivienda = "La vivienda es obligatoria";
     }
 
     setErrors(newErrors); // Actualizamos los errores
 
     return Object.keys(newErrors).length === 0; // Si no hay errores, retornamos true
   };
+
 
   // Función para enviar el formulario
   const submitForm = async (e) => {
@@ -199,7 +223,7 @@ const UpdateProyecto = () => {
                 className={`form-control ${errors.fecha_fin ? "is-invalid" : ""}`}
                 onChange={inputHandler}
                 name="fecha_fin"
-                value={proyecto.fecha_fin}
+                value={proyectoData.fecha_fin}
               />
               {errors.fecha_fin && (
                 <div className="invalid-feedback" style={{ color: "red" }}>
@@ -207,6 +231,7 @@ const UpdateProyecto = () => {
                 </div>
               )}
             </div>
+
 
             <div className="form-group mb-3">
               <label htmlFor="estado">Estado:</label>
