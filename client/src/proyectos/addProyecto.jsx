@@ -60,8 +60,7 @@ const AddProyecto = () => {
 
       if (inputDate < today) {
         newErrors.fecha_inicio = "La fecha de inicio no puede ser anterior a la fecha actual";
-      } else if (inputDate > maxDate) {
-        newErrors.fecha_inicio = "La fecha de inicio no puede ser mayor a 10 años a partir de hoy";
+      
       } else {
         delete newErrors.fecha_inicio;
       }
@@ -70,6 +69,8 @@ const AddProyecto = () => {
     // Validar "fecha_fin"
     if (fieldName === "fecha_fin" && value === "") {
       newErrors.fecha_fin = "La fecha de finalización es obligatoria";
+    } else if (inputDate > maxDate) {
+        newErrors.fecha_fin = "La fecha de fin no puede ser mayor a 10 años a partir de hoy";
     } else {
       delete newErrors.fecha_fin;
     }
