@@ -21,7 +21,7 @@ const ListViviendas = () => {
   useEffect(() => {
     const fetchViviendas = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/viviendas");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/viviendas");
         setViviendas(response.data);
       } catch (error) {
         console.log("Error al obtener los datos", error);
@@ -67,7 +67,7 @@ const ListViviendas = () => {
     if (!isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:8000/api/delete/vivienda/${viviendaId}`);
+      await axios.delete(`https://reformasmern-backend.onrender.com/api/delete/vivienda/${viviendaId}`);
       setViviendas(prev => prev.filter(vivienda => vivienda._id !== viviendaId));
       toast.success("Vivienda eliminada exitosamente", { position: "top-right" });
     } catch (error) {
