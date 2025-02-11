@@ -19,7 +19,7 @@ const AddVivienda = () => {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/clients");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/clients");
         setClientes(response.data);
       } catch (error) {
         console.log("Error al obtener los clientes", error);
@@ -97,7 +97,7 @@ const AddVivienda = () => {
 
     // Enviar los datos si no hay errores
     await axios
-      .post("http://localhost:8000/api/vivienda", viviendaData)
+      .post("https://reformasmern-backend.onrender.com/api/vivienda", viviendaData)
       .then((response) => {
         toast.success(response.data.message, { position: "top-right" });
         navigate("/viviendas"); // Redirige a la lista de viviendas después de agregar la nueva vivienda
