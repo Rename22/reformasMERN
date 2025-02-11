@@ -20,7 +20,7 @@ const UpdateMaterial = () => {
   useEffect(() => {
     const fetchProyectos = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/proyectos");
+        const response = await axios.get("https://reformasmern-backend.onrender.com/api/proyectos");
         setProyectos(response.data);
       } catch (error) {
         console.log("Error al obtener los proyectos", error);
@@ -33,7 +33,7 @@ const UpdateMaterial = () => {
   useEffect(() => {
     const fetchMaterial = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/material/${id}`);
+        const response = await axios.get(`https://reformasmern-backend.onrender.com/api/material/${id}`);
         const materialData = response.data;
         setMaterial({
           nombre_material: materialData.nombre_material,
@@ -114,7 +114,7 @@ const UpdateMaterial = () => {
     // Enviar los datos si no hay errores
     try {
       const response = await axios.put(
-        `http://localhost:8000/api/update/material/${id}`,
+        `https://reformasmern-backend.onrender.com/api/update/material/${id}`,
         material
       );
       toast.success(response.data.message, { position: "top-right" });
