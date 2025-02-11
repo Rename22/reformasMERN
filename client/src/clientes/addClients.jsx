@@ -107,7 +107,7 @@ const AddClients = () => {
 
     // Enviar los datos si no hay errores
     await axios
-      .post("http://localhost:8000/api/client", clientData)
+      .post("https://reformasmern-backend.onrender.com/api/client", clientData)
       .then((response) => {
         toast.success(response.data.message, { position: "top-right" });
         navigate("/clients"); // Redirige a la lista de clientes después de agregar el nuevo cliente
