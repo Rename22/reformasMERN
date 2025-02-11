@@ -52,7 +52,19 @@ const AddProyecto = () => {
     if (fieldName === "fecha_inicio" && value === "") {
       newErrors.fecha_inicio = "La fecha de inicio es obligatoria";
     } else {
-      delete newErrors.fecha_inicio;
+      // Validar si la fecha de inicio es menor a la fecha actual o mayor a 10 años
+      const today = new Date();
+      const inputDate = new Date(value);
+      const maxDate = new Date();
+      maxDate.setFullYear(today.getFullYear() + 10);
+
+      if (inputDate < today) {
+        newErrors.fecha_inicio = "La fecha de inicio no puede ser anterior a la fecha actual";
+      } else if (inputDate > maxDate) {
+        newErrors.fecha_inicio = "La fecha de inicio no puede ser mayor a 10 años a partir de hoy";
+      } else {
+        delete newErrors.fecha_inicio;
+      }
     }
 
     // Validar "fecha_fin"
@@ -246,9 +258,9 @@ const AddProyecto = () => {
             </div>
           </form>
         </div>
+              
       </div>
     </div>
   );
 };
-
 export default AddProyecto;
